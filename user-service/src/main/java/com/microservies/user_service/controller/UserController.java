@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,5 +34,11 @@ public class UserController {
     public ResponseEntity<UserDTO> GetUserById(@PathVariable Long id){
         UserDTO userDTO = service.GetUserById(id);
         return ResponseEntity.ok(userDTO);
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<Optional<User>> getUserByEmail(@PathVariable String email){
+        Optional<User> user = service.GetUserByEmail(email);
+        return ResponseEntity.ok(user);
     }
 }

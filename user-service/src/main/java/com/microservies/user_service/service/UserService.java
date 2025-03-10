@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,5 +31,10 @@ public class UserService {
                 ()-> new UserNotFoundException("userNotFoundWithID:"+id)
         );
         return mapperService.convertToDTO(user);
+    }
+
+
+    public Optional<User> GetUserByEmail(String email) {
+        return repository.FindByEmail(email);
     }
 }
